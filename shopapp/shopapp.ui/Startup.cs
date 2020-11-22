@@ -48,7 +48,16 @@ namespace shopapp.ui
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints=>{                   //MVC ROUTE İŞLEMLERİ
+         
+
+            app.UseEndpoints(endpoints=>{        //MVC ROUTE İŞLEMLERİ
+                
+                endpoints.MapControllerRoute(
+                    name:"products",
+                    pattern:"products",
+                    defaults: new {controller="Product",action="list"}
+                );
+                           
                 endpoints.MapControllerRoute(
                     name:"default",
                     pattern:"{controller=Home}/{action=Index}/{id?}"

@@ -16,6 +16,7 @@ namespace shopapp.data.Concrete
                 }
                 if(context.Products.Count()==0){
                 context.Products.AddRange(Products);
+                context.AddRange(ProductCategories);
                  }
             }
             context.SaveChanges();
@@ -34,9 +35,25 @@ namespace shopapp.data.Concrete
            new Product{name="Iphone 8",price=5000,imageUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/TeoriV2-103888-27_large.jpg",description="iyi Telefon",isApproved=true},
            new Product{name="Iphone SE",price=5500,imageUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/TeoriV2-103888-27_large.jpg",description="iyi Telefon",isApproved=true},
            new Product{name="Iphone 8Plus",price=6000,imageUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/TeoriV2-103888-27_large.jpg",description="iyi Telefon",isApproved=true},
-           new Product{name="Iphone 7Plus",price=4000,imageUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/TeoriV2-103888-27_large.jpg",description="iyi Telefon",isApproved=true},
-           
+           new Product{name="Iphone 7Plus",price=4000,imageUrl="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/apple/thumb/TeoriV2-103888-27_large.jpg",description="iyi Telefon",isApproved=true},   
         };
+
+        private static ProductCategory[] ProductCategories={
+            new ProductCategory(){product=Products[0],category=Categories[0]},
+            new ProductCategory(){product=Products[0],category=Categories[1]},
+            new ProductCategory(){product=Products[1],category=Categories[0]},
+            new ProductCategory(){product=Products[1],category=Categories[1]},
+            new ProductCategory(){product=Products[2],category=Categories[0]},
+            new ProductCategory(){product=Products[2],category=Categories[1]},
+            new ProductCategory(){product=Products[3],category=Categories[0]},
+            new ProductCategory(){product=Products[3],category=Categories[1]},
+            new ProductCategory(){product=Products[4],category=Categories[0]},
+            new ProductCategory(){product=Products[4],category=Categories[1]},
+            new ProductCategory(){product=Products[5],category=Categories[0]},
+            new ProductCategory(){product=Products[5],category=Categories[1]},
+        };
+
+
 
 
     }

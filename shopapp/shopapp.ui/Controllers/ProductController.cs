@@ -22,7 +22,7 @@ namespace shopapp.ui.Controllers
 
             var products=iProductService.GetAll();
             if(id!=null){
-                products=products.Where(i=>i.id==id).ToList();
+               products=iProductService.getProductsByCategoryId((int)id);
             }
 
            return View(products);
@@ -31,7 +31,7 @@ namespace shopapp.ui.Controllers
 
         public IActionResult details(int id){
 
-            var product=iProductService.GetById(id);
+            var product=iProductService.getProductDetails(id);
             return View(product);
 
         }
