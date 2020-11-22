@@ -1,0 +1,16 @@
+@model List<shopapp.entity.Product>
+
+@{
+  Layout="_layout";
+}
+
+  @section messageBox{
+    <div class="alert alert-success text-center">Mesajınız Var.</div>
+  }
+
+  @section categories{
+     @await Component.InvokeAsync("Categories")
+  }
+
+  @await Html.PartialAsync("_product",@Model)
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+    <link rel="stylesheet" href="/modules/bootstrap/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<body>
+    @RenderSection("messageBox",false)
+
+    @await Html.PartialAsync("_navbar")
+
+    @await Html.PartialAsync("_header")
+
+    <main>
+        <div class="container">
+
+           @if(IsSectionDefined("Categories")){
+               <div class="row">
+                   <div class="col-md-2">@RenderSection("Categories",false)</div>
+                    <div class="col-md-10">@RenderBody()</div>
+               </div>
+           }
+           else{
+               <div class="row">
+                   <div class="col-md-12">@RenderBody()</div>
+               </div>
+           }
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
