@@ -25,7 +25,7 @@ namespace shopapp.business.Concrete
 
         public List<Category> GetAll()
         {
-            throw new System.NotImplementedException();
+            return iCategoryRepository.GetAll();
         }
 
         public Category GetById(int i)

@@ -4,12 +4,4 @@
   Layout="_layout";
 }
 
- @foreach (var item in @Model)
- {
-     @item.name;
-     @item.price;
-     @item.description;
- }
-
- luıl
- 
+  @await Html.PartialAsync("_product",@Model)

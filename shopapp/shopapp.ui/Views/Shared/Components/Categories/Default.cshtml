@@ -1,9 +1,9 @@
- @model List<shopapp.ui.Model.Category>
+ @model List<shopapp.entity.Category>
  
  
  
                 <div class="list-group">
-                   <a href="/product/list" class="list-group-item list-group-item-action">Tüm Ürünler</a> 
+                   <a href="/product/list" class="list-group-item list-group-item-action @ViewBag.SelectedCategory=="0"?"active":""">Tüm Ürünler</a> 
               @foreach (var item in @Model)
               {
                   <a href="/product/list/@item.id" class="list-group-item list-group-item-action @(ViewBag.SelectedCategory==item.id.ToString()?"active":"")">@item.name</a> 

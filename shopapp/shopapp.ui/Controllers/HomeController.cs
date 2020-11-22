@@ -15,8 +15,8 @@ namespace shopapp.ui.Controllers
         }
         public IActionResult Index(){
            
-                var pr=iproductRepository.GetAll();
-                return View(pr);
+                var productList=iproductRepository.GetAll();
+                return View(productList);
         }
     }
 }
