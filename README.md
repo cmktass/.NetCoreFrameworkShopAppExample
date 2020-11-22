@@ -1,0 +1,2 @@
+# .NetCoreFramework ShopApp Example
+ 
