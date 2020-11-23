@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using shopapp.business.Abstract;
 using shopapp.data.Abstract;
 using shopapp.ui.Model;
 
@@ -7,15 +8,24 @@ namespace shopapp.ui.Controllers
     public class HomeController:Controller
     {
 
-        private IProductRepository iproductRepository;
+        private IProductRepository iproductService;
 
-        public HomeController(IProductRepository productRepository)
+        public HomeController(IProductRepository productService)
         {
-            this.iproductRepository=productRepository;
+            this.iproductService=productService;
         }
-        public IActionResult Index(){
-           
-                var productList=iproductRepository.GetAll();
+        public IActionResult Index(int page=1){
+
+
+                const int pageSize=3;
+                var productList=iproductService.GetAllwithPage(page,pageSize);
+                PageInfo p=new PageInfo(){
+                   totalItems=iproductService.getAllCount(),
+                   currentPage=page,
+                   itemPerPage=pageSize,
+                   currentCategory= 0
+                };
+                ViewBag.p=p;
                 return View(productList);
         }
     }

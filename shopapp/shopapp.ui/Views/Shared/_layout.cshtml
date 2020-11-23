@@ -21,7 +21,9 @@
 
            @if(IsSectionDefined("Categories")){
                <div class="row">
-                   <div class="col-md-2">@RenderSection("Categories",false)</div>
+                   <div class="col-md-2">@RenderSection("Categories",false)
+                      @await Html.PartialAsync("_search")
+                   </div>
                     <div class="col-md-10">@RenderBody()</div>
                </div>
            }

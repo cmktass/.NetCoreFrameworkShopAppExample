@@ -9,7 +9,13 @@ namespace shopapp.data.Abstract
 
          Product GetProductDetails(int id);
 
-         List<Product> GetProductByCategoryId(int categoryId);
+         List<Product> GetProductByCategoryId(int categoryId,int page,int pageSize);
+
+         int getCountByCategory(int id);
+
+         List<Product> GetAllwithPage(int page,int pageSize);
+
+         int getAllCount();
          
     }
 }

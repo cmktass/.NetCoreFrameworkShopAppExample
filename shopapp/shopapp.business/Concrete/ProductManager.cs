@@ -28,9 +28,24 @@ namespace shopapp.business.Concrete
             return iproductRepository.GetAll();
         }
 
+        public int getAllCount()
+        {
+           return iproductRepository.getAllCount();
+        }
+
+        public List<Product> GetAllwithPage(int page, int pageSize)
+        {
+            return iproductRepository.GetAllwithPage(page,pageSize);
+        }
+
         public Product GetById(int i)
         {
              return iproductRepository.GetById(i);
+        }
+
+        public int getCountByCategory(int? id)
+        {
+           return iproductRepository.getCountByCategory((int)id);
         }
 
         public Product getProductDetails(int id)
@@ -38,9 +53,9 @@ namespace shopapp.business.Concrete
             return iproductRepository.GetProductDetails(id);
         }
 
-        public List<Product> getProductsByCategoryId(int categoryId)
+        public List<Product> getProductsByCategoryId(int categoryId,int page,int pageSize)
         {
-            return iproductRepository.GetProductByCategoryId(categoryId);
+            return iproductRepository.GetProductByCategoryId(categoryId,page,pageSize);
         }
 
         public void Update(Product entity)

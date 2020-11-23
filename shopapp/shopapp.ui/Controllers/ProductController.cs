@@ -18,17 +18,30 @@ namespace shopapp.ui.Controllers
         {
             this.iProductService=_iProductService;
         }
-        public IActionResult list(int? id){
 
-            var products=iProductService.GetAll();
-            if(id!=null){
-               products=iProductService.getProductsByCategoryId((int)id);
-            }
+        public IActionResult list(int? id,int page=1){
 
-           return View(products);
+            const int pageSize=3;
+            var products=iProductService.GetAllwithPage(page,pageSize);
+            PageInfo p=new PageInfo(){
+                   totalItems=iProductService.getAllCount(),
+                   currentPage=page,
+                   itemPerPage=pageSize,
+                   currentCategory= 0
+            };
             
+            if(id!=null){
+                 p=new PageInfo(){
+                   totalItems=iProductService.getCountByCategory(id),
+                   currentPage=page,
+                   itemPerPage=pageSize,
+                   currentCategory= (int)id
+            };
+               products=iProductService.getProductsByCategoryId((int)id,page,pageSize); 
+           }
+            ViewBag.p=p;
+           return View(products);
         }
-
         public IActionResult details(int id){
 
             var product=iProductService.getProductDetails(id);
