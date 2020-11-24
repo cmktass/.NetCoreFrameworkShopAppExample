@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,7 @@ namespace shopapp.ui.Controllers
                    itemPerPage=pageSize,
                    currentCategory= 0
             };
-            
+           
             if(id!=null){
                  p=new PageInfo(){
                    totalItems=iProductService.getCountByCategory(id),

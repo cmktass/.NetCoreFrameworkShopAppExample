@@ -13,7 +13,8 @@ namespace shopapp.ui.Model
         public int currentCategory { get; set; }
 
         public int totalPages(){
-            return (int)Math.Ceiling((decimal)(totalItems/itemPerPage));
+            decimal deger= (decimal)totalItems/itemPerPage;
+            return (int)Math.Ceiling(deger);
         }
     }
 }
