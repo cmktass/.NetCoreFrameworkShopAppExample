@@ -20,7 +20,7 @@ namespace shopapp.business.Concrete
 
         public void Delete(Category entity)
         {
-            throw new System.NotImplementedException();
+            iCategoryRepository.Delete(entity);
         }
 
         public List<Category> GetAll()
@@ -28,14 +28,14 @@ namespace shopapp.business.Concrete
             return iCategoryRepository.GetAll();
         }
 
-        public Category GetById(int i)
+        public Category GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return iCategoryRepository.GetById(id);
         }
 
         public void Update(Category entity)
         {
-            throw new System.NotImplementedException();
+            iCategoryRepository.Update(entity);
         }
     }
 }

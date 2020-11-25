@@ -6,7 +6,7 @@ namespace shopapp.business.Abstract
     public interface ICategoryService
     {
            
-         Category GetById(int i);
+         Category GetById(int id);
 
          List<Category> GetAll();
 

@@ -9,9 +9,11 @@ namespace shopapp.ui.Controllers
     {
 
         private IProductService IproductService;
-        public AdminController(IProductService iproductService)
+        private ICategoryService IcategoryService;
+        public AdminController(IProductService iproductService,ICategoryService IcategoryService)
         {
             this.IproductService=iproductService;
+            this.IcategoryService=IcategoryService;
         }
         public IActionResult ProductList()
         {
@@ -51,5 +53,32 @@ namespace shopapp.ui.Controllers
             IproductService.Delete(product);
             return RedirectToAction("ProductList");
         }
+
+         public IActionResult categoryList()
+        {
+            var categories=IcategoryService.GetAll();
+            return View(categories);
+        }
+
+        public IActionResult editCategory(int id)
+        {
+            var category=IcategoryService.GetById(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult editCategory(Category c)
+        {
+            IcategoryService.Update(c);
+            return RedirectToAction("categoryList");
+        }
+         public IActionResult deleteCategory(int id)
+        {
+            var category=IcategoryService.GetById(id);
+            IcategoryService.Delete(category);
+            return RedirectToAction("categoryList");
+        }
+
+
     }
 }

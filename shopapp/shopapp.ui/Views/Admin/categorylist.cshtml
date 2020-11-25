@@ -1,0 +1,39 @@
+@model List<shopapp.entity.Category>
+
+@{
+    Layout="_layout";
+}
+<div class="row">
+        <div class="col-md-12">
+            <h1>Admin Categories</h1>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Name</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    @if(Model.Count>0){
+                            @for(int i=0;i<@Model.Count;i++)
+                             {
+                                <tr>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].name</td>
+                                    <td>
+                                        <a href="/admin/editcategory/@Model[i].id" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="/admin/deletecategory/@Model[i].id" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                             }
+                    }
+                    else{
+                            <div class="alert alert-danger">No Category</div>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
