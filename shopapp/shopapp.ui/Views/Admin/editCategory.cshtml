@@ -6,8 +6,9 @@
 
 <h1 class="h3">Edit Category</h1>
 <hr>
-
-<form asp-controller="Admin" asp-action="CreateProduct" method="POST">
+<div class="row">
+    <div class="col-md-4">
+            <form asp-controller="Admin" asp-action="CreateProduct" method="POST">
     <div class="form-group row">
         <label for="" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
@@ -19,4 +20,54 @@
             <button class="btn btn-primary" type="submit">Edit Category</button>
         </div>
     </div>
-</form>
+            </form>
+    </div>
+    <div class="col-md-8">
+            <div class="col-md-12">
+            <h1>Admin Products</h1>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Image</td>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Id</td>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    @if(Model.productCategories.Count>0){
+                            @foreach (var item in Model.productCategories)
+                             { 
+                                <tr>
+                                    <td>@item.product.id</td>
+                                    <td><img src="@item.product.imageUrl"  width="80"></td>
+                                    <td>@item.product.name</td>
+                                    <td>@item.product.price</td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="/admin/deletefromcategory" method="POST" style="display: inline;">
+                                            <input type="hidden" name="productId" value="@item.product.id">
+                                            <input type="hidden" name="categoryId" value="@Model.id">
+                                            <button type="submit" class="btn btn-danger btn-sm">a</button>
+                                         </form>
+                                        
+                                    </td>
+                                </tr>
+                               
+                             }
+                    }
+                    else{
+                            <div class="alert alert-danger">Ürün Yoktur.</div>
+                    }
+
+
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

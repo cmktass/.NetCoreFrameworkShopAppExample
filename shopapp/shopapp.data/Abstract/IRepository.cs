@@ -10,7 +10,6 @@ namespace shopapp.data.Abstract
 
          void create(T c);
 
-         void Update(T c);
 
          void Delete(T entity);
     }

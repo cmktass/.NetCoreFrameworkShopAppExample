@@ -24,26 +24,29 @@ namespace shopapp.ui.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
-            return View();
+            var cat=IcategoryService.GetAll();
+            return View(cat);
         }
 
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public IActionResult AddProduct(Product product,int [] categoryIds)
         {
-            IproductService.create(product);
+            IproductService.createProductWithCategories(product,categoryIds);
             return RedirectToAction("ProductList");
         }
 
         public IActionResult edit(int id)
         {
-                var product=IproductService.GetById(id);
+                var product=IproductService.getByProductWithCategories(id);
+                ViewBag.Categories=IcategoryService.GetAll();
                 return View(product);
         }
 
         [HttpPost]
-        public IActionResult edit(Product p)
+        public IActionResult edit(Product p,int [] categoryId)
         {
-            IproductService.Update(p);
+            IproductService.Update(p,categoryId);
+            Console.Write(categoryId[0]);
             return RedirectToAction("ProductList");
         }
 
@@ -54,6 +57,20 @@ namespace shopapp.ui.Controllers
             return RedirectToAction("ProductList");
         }
 
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCategory(string name)
+        {
+            Category category=new Category{name=name};
+            IcategoryService.create(category);
+            return RedirectToAction("categoryList");
+        }
+
          public IActionResult categoryList()
         {
             var categories=IcategoryService.GetAll();
@@ -62,7 +79,7 @@ namespace shopapp.ui.Controllers
 
         public IActionResult editCategory(int id)
         {
-            var category=IcategoryService.GetById(id);
+            var category=IcategoryService.GetByIdCategoryWithProducts(id);
             return View(category);
         }
 
@@ -79,6 +96,15 @@ namespace shopapp.ui.Controllers
             return RedirectToAction("categoryList");
         }
 
+        [HttpPost]
+        public IActionResult deleteFromCategory(int categoryId,int productId)
+        {   
+            IcategoryService.deleteFromCategory(categoryId,productId);
+            Console.WriteLine(categoryId+"    "+productId);
+            return Redirect("/admin/editcategory/"+categoryId);
+        }
+
+        
 
     }
 }

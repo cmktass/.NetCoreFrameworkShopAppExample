@@ -16,6 +16,13 @@ namespace shopapp.data.Abstract
          List<Product> GetAllwithPage(int page,int pageSize);
 
          int getAllCount();
-         
+        Product getByProductWithCategories(int id);
+
+        void Update(Product p, int[] categoryId);
+
+        void Update(Product entity);
+
+        void createProductWithCategories(Product product, int[] categoryIds);
+        
     }
 }

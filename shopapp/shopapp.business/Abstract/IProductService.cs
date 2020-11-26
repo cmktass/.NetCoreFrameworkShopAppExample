@@ -12,7 +12,7 @@ namespace shopapp.business.Abstract
 
          void create(Product entity);
 
-         void Update(Product entity);
+         void Update(Product entity, int[] categoryId);
 
          void Delete(Product entity);
 
@@ -24,5 +24,7 @@ namespace shopapp.business.Abstract
         List<Product> GetAllwithPage(int page,int pageSize);
 
         int getAllCount();
+        Product getByProductWithCategories(int id);
+        void createProductWithCategories(Product product, int[] categoryIds);
     }
 }

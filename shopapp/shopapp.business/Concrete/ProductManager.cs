@@ -18,6 +18,11 @@ namespace shopapp.business.Concrete
             iproductRepository.create(entity);
         }
 
+        public void createProductWithCategories(Product product, int[] categoryIds)
+        {
+           iproductRepository.createProductWithCategories(product,categoryIds);
+        }
+
         public void Delete(Product entity)
         {
             iproductRepository.Delete(entity);
@@ -43,6 +48,11 @@ namespace shopapp.business.Concrete
              return iproductRepository.GetById(i);
         }
 
+        public Product getByProductWithCategories(int id)
+        {
+            return iproductRepository.getByProductWithCategories(id);
+        }
+
         public int getCountByCategory(int? id)
         {
            return iproductRepository.getCountByCategory((int)id);
@@ -61,6 +71,11 @@ namespace shopapp.business.Concrete
         public void Update(Product entity)
         {
            iproductRepository.Update(entity);
+        }
+
+        public void Update(Product entity, int[] categoryId)
+        {
+            iproductRepository.Update(entity,categoryId);
         }
     }
 }

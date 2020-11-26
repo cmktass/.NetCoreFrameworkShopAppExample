@@ -8,6 +8,14 @@ namespace shopapp.data.Concrete
 {
     public class EfCoreProductRepository : EfCoreGenericRepository<ShopContext, Product>, IProductRepository
     {
+        public void createProductWithCategories(Product product, int[] categoryIds)
+        {
+            using(var db=new ShopContext()){
+                db.Products.Add(product);
+                db.SaveChanges();
+            }
+        }
+
         public int getAllCount()
         {
             using(var db=new ShopContext()){
@@ -21,6 +29,16 @@ namespace shopapp.data.Concrete
             using(var db=new ShopContext()){
                 var products=db.Products.Skip((page-1)*pageSize).Take(pageSize).ToList();
                 return products;
+            }
+        }
+
+        public Product getByProductWithCategories(int id)
+        {
+            using(var db=new ShopContext()){
+                var product=db.Products.Where(i=>i.id==id)
+                                        .Include(i=>i.productCategories)
+                                        .ThenInclude(i=>i.category);
+                                    return product.FirstOrDefault();
             }
         }
 
@@ -61,6 +79,24 @@ namespace shopapp.data.Concrete
                                     .Include(i=>i.productCategories)
                                     .ThenInclude(i=>i.category)
                                     .FirstOrDefault();
+            }
+        }
+
+        public void Update(Product p, int[] categoryId)
+        {
+            using(var db=new ShopContext()){
+                var product=db.Products.Include(i=>i.productCategories).FirstOrDefault(i=>i.id==p.id);
+
+                product.name=p.name;
+                product.description=p.description;
+                product.imageUrl=p.imageUrl;
+                product.price=p.price;
+
+                product.productCategories=categoryId.Select(ctaid=>new ProductCategory(){
+                    productId=p.id,
+                    categoryId=ctaid
+                }).ToList();
+                db.SaveChanges();
             }
         }
     }
