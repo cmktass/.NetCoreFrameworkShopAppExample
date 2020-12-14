@@ -1,10 +1,12 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using shopapp.business.Abstract;
 using shopapp.entity;
 
 namespace shopapp.ui.Controllers
 {
+    [Authorize]
     public class AdminController:Controller
     {
 

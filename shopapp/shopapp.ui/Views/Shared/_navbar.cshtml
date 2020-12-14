@@ -11,18 +11,40 @@
         <li class="nav-item">
           <a href="" class="nav-link">Orders</a>
         </li>
-        <li class="nav-item">
-          <a href="/admin/productlist" class="nav-link">EditProducts</a>
-        </li>
-         <li class="nav-item">
-          <a href="/admin/addproduct" class="nav-link">Add Product</a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/categorylist" class="nav-link">Edit Category</a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/addcategory" class="nav-link">Add Category</a>
-        </li>
+        @if(User.Identity.IsAuthenticated)
+        {
+               <li class="nav-item">
+                  <a href="/admin/productlist" class="nav-link">EditProducts</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/admin/addproduct" class="nav-link">Add Product</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/admin/categorylist" class="nav-link">Edit Category</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/admin/addcategory" class="nav-link">Add Category</a>
+                </li>
+        }
+      </ul>
+       <ul class="navbar-nav ml-auto">
+          @if(User.Identity.IsAuthenticated)
+          {
+            <li class="nav-item">
+              <a href="/account/logout" class="nav-link">LogOut</a>
+            </li>
+          }
+      
+          @if(!User.Identity.IsAuthenticated)
+          {
+          <li class="nav-item">
+            <a href="/account/login" class="nav-link">Login</a>
+          </li>
+         
+          <li class="nav-item">
+            <a href="/account/register" class="nav-link">Register</a>
+          </li>
+           }
       </ul>
     </div>
   </div>
